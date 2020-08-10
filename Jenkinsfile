@@ -22,8 +22,8 @@ pipeline {
                 echo "EXTERNAL: ${env.EXTERNAL}"
                 echo "INTERNAL: ${env.INTERNAL}"
 
-                echo "CC: ${CC}"
-                echo "EXIT_STATUS: ${EXIT_STATUS}"
+                echo "CC: ${env.CC}"
+                echo "EXIT_STATUS: ${env.EXIT_STATUS}"
 
                 echo "BUILD_ID: ${env.BUILD_ID}"
                 echo "BUILD_NUMBER: ${env.BUILD_NUMBER}"
