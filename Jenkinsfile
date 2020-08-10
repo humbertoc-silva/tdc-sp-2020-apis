@@ -1,5 +1,3 @@
-"{"clientId":135,"value":1001}"
-
 pipeline {
     agent any
 
