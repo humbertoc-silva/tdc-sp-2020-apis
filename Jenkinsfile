@@ -1,8 +1,15 @@
+"{"clientId":135,"value":1001}"
+
 pipeline {
     agent any
 
     environment {
         EXTERNAL = 'EXTERNAL'
+
+        // Using returnStdout
+        CC = """${sh(returnStdout: true, script: 'echo "clang"')}"""
+        // Using returnStatus
+        EXIT_STATUS = """${sh(returnStatus: true, script: 'exit 1')}"""
     }
     
     stages {
@@ -14,6 +21,10 @@ pipeline {
             steps {
                 echo "EXTERNAL: ${env.EXTERNAL}"
                 echo "INTERNAL: ${env.INTERNAL}"
+
+                echo "CC: ${CC}"
+                echo "EXIT_STATUS: ${EXIT_STATUS}"
+
                 echo "BUILD_ID: ${env.BUILD_ID}"
                 echo "BUILD_NUMBER: ${env.BUILD_NUMBER}"
                 echo "BUILD_TAG: ${env.BUILD_TAG}"
