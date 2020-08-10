@@ -1,9 +1,19 @@
 pipeline {
-    agent any 
+    agent any
+
+    environment {
+        EXTERNAL = 'EXTERNAL'
+    }
     
     stages {
         stage('Env') {
+            environment {
+                INTERNAL = 'INTERNAL'
+            }
+
             steps {
+                echo "EXTERNAL: ${env.EXTERNAL}"
+                echo "INTERNAL: ${env.INTERNAL}"
                 echo "BUILD_ID: ${env.BUILD_ID}"
                 echo "BUILD_NUMBER: ${env.BUILD_NUMBER}"
                 echo "BUILD_TAG: ${env.BUILD_TAG}"
