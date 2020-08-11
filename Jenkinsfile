@@ -6,6 +6,11 @@ pipeline {
     }
     
     stages {
+        stage('Params') {
+            steps {
+                echo "${params.Greeting} World!"
+            }
+        }
         stage('Env') {
             environment {
                 INTERNAL = 'INTERNAL'
