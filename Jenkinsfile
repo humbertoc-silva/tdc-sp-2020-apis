@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IGNORE_FILES = """${sh(returnStdout: true, script: 'ls -p | grep -v /')}"""
-        CHANGED_POLICIES = """${sh(returnStdout: true, script: 'git diff --name-only HEAD~1 | sort -u | awk 'BEGIN {FS="/"} {print $1}')}"""
+        CHANGED_POLICIES = """${sh(returnStdout: true, script: 'git diff --name-only HEAD~1 | sort -u | awk '''BEGIN {FS="/"} {print $1}''')}"""
     }
 
     stages {
