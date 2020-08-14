@@ -2,17 +2,65 @@ pipeline {
     agent any
 
     stages {
-        stage('Validate') {
-            steps {
-                echo 'Validating...'
+        stage('customers') {
+            when {
+                changeset '**/customers/*.*'
+            }
+            stages {
+                stage('Check') {
+                    steps {
+                        echo 'Check'
+                    }
+                }
+                stage('Test') {
+                    steps {
+                        echo 'Test'
+                    }
+                }
+                stage('Coverage') {
+                    steps {
+                        echo 'Coverage'
+                    }
+                }
+                stage('Deploy') {
+                    when {
+                        branch 'master'
+                    }
+                    steps {
+                        echo 'Deploy'
+                    }
+                }
             }
         }
-        stage('Deploy') {
+
+        stage('products') {
             when {
-                branch 'master'
+                changeset '**/products/*.*'
             }
-            steps {
-                echo 'Deploying...'
+            stages {
+                stage('Check') {
+                    steps {
+                        echo 'Check'
+                    }
+                }
+                stage('Test') {
+                    steps {
+                        echo 'Test'
+                    }
+                }
+                stage('Coverage') {
+                    steps {
+                        echo 'Coverage'
+                    }
+                }
+                stage('Deploy') {
+                    when {
+                        branch 'master'
+                    }
+                    steps {
+                        echo 'Deploy'
+                    }
+                }
             }
         }
     }
