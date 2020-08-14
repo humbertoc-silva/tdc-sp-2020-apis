@@ -2,65 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('customers') {
-            when {
-                changeset "**/customers/*.*"
-            }
-            stages {
-                stage('Check') {
-                    steps {
-                        echo 'Check'
-                    }
-                }
-                stage('Test') {
-                    steps {
-                        echo 'Test'
-                    }
-                }
-                stage('Coverage') {
-                    steps {
-                        echo 'Coverage'
-                    }
-                }
-                stage('Deploy') {
-                    when {
-                        branch 'master'
-                    }
-                    steps {
-                        echo 'Deploy'
-                    }
-                }
+        stage('Validate') {
+            steps {
+                sh 'spectral lint openapi.json'
             }
         }
-
-        stage('products') {
+        stage('Deploy') {
             when {
-                changeset "**/products/*.*"
+                branch 'master'
             }
-            stages {
-                stage('Check') {
-                    steps {
-                        echo 'Check'
-                    }
-                }
-                stage('Test') {
-                    steps {
-                        echo 'Test'
-                    }
-                }
-                stage('Coverage') {
-                    steps {
-                        echo 'Coverage'
-                    }
-                }
-                stage('Deploy') {
-                    when {
-                        branch 'master'
-                    }
-                    steps {
-                        echo 'Deploy'
-                    }
-                }
+            steps {
+                echo 'Deploy'
             }
         }
     }
