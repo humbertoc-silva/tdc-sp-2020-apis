@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('customers') {
             when {
-                changeset "customers/*.*"
+                changeset "**/customers/*.*"
             }
             stages {
                 stage('Check') {
@@ -35,7 +35,7 @@ pipeline {
 
         stage('products') {
             when {
-                changeset "products/*.*"
+                changeset "**/products/*.*"
             }
             stages {
                 stage('Check') {
