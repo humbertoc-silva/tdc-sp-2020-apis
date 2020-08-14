@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Validate') {
             steps {
-                echo 'Validating...'
+                nodejs(nodeJSInstallationName: 'Node.js 12.18.3 (LTS)') {
+                    sh 'spectral lint openapi.json'
+                }
             }
         }
         stage('Deploy') {
@@ -12,7 +14,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Deploying...'
+                echo 'Deploy'
             }
         }
     }
