@@ -15,6 +15,7 @@ paths:
   /customers:
     post:
       summary: Creates a new customer.
+      description: Creates a new customer...
       operationId: createCustomer
       tags: 
         - customers
@@ -52,6 +53,7 @@ paths:
                 }
     get:
       summary: Reads a list of customers.
+      description: Reads a list of customers...
       operationId: getAllCustomers
       parameters: 
         - name: pageOffset
@@ -89,6 +91,7 @@ paths:
   /customers/{customerId}:
     put:
       summary: Replace a customer.
+      description: Replace a customer...
       operationId: replaceCustomer
       tags: 
         - customers
@@ -110,6 +113,7 @@ paths:
           description: OK
     patch:
       summary: Modify a customer.
+      description: Modify a customer...
       operationId: modifyCustomer
       tags: 
         - customers
@@ -129,6 +133,7 @@ paths:
           description: OK
     get:
       summary: Read a customer.
+      description: Read a customer...
       operationId: getCustomerById
       tags: 
         - customers
@@ -148,6 +153,7 @@ paths:
                 }
     delete:
       summary: Deletes a customer.
+      description: Deletes a customer...
       operationId: deleteCustomer
       tags: 
         - customers
@@ -201,6 +207,3 @@ tags:
 externalDocs:
   description: Complementary documentation about Customers API.
   url: https://acme.com/docs/customers-api
-  
-  
-    
