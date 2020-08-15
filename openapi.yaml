@@ -11,6 +11,8 @@ info:
     name: ACME License
     url: https://acme.com/license
   version: 1.0.0
+servers:
+  - url: https://api.acme.com/v1
 paths:
   /customers:
     post:
