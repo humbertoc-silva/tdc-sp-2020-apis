@@ -25,7 +25,7 @@ paths:
           'application/json':
             schema:
               $ref: '#/components/schemas/Customer'
-            example: |
+            example:
               {
                 "name": "John Doe",
                 "age": 34,
@@ -44,9 +44,9 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/Customer'
-              example: |
+              example:
                 {
-                  "id": 1
+                  "id": 1,
                   "name": "John Doe",
                   "age": 34,
                   "email": "john.doe@acme.com"
@@ -73,7 +73,7 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/Customers'
-              example: |
+              example:
                 [
                   {
                     "id": 1,
@@ -101,7 +101,7 @@ paths:
           'application/json':
             schema:
               $ref: '#/components/schemas/Customer'
-            example: |
+            example:
               {
                 "name": "John Doe",
                 "age": 34,
@@ -123,9 +123,9 @@ paths:
           'application/json':
             schema:
               $ref: '#/components/schemas/Customer'
-            example: |
+            example:
               {
-                "name": "John Doe",
+                "name": "John Doe"
               }
         required: true
       responses:
@@ -144,7 +144,7 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/Customer'
-              example: |
+              example:
                 {
                   "id": 1,
                   "name": "John Doe",
