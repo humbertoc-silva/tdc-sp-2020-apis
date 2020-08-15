@@ -1,0 +1,211 @@
+openapi: 3.0.3
+info:
+  title: Customers
+  description: Customers API.
+  termsOfService: https://acme.com/terms
+  contact:
+    name: John Doe
+    url: https://blog.com/john
+    email: john.doe@acme.com
+  license:
+    name: ACME License
+    url: https://acme.com/license
+  version: 1.0.0
+servers:
+  - url: https://api.acme.com/v1
+paths:
+  /customers:
+    post:
+      summary: Creates a new customer.
+      description: Creates a new customer...
+      operationId: createCustomer
+      tags: 
+        - customers
+      requestBody:
+        description: A request body used to creat a new customer.
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Customer'
+            example:
+              {
+                "name": "John Doe",
+                "age": 34,
+                "email": "john.doe@acme.com"
+              }
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            'Location':
+              schema:
+                type: string
+              example: https://api.acme.com/v1/customers/1
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Customer'
+              example:
+                {
+                  "id": 1,
+                  "name": "John Doe",
+                  "age": 34,
+                  "email": "john.doe@acme.com"
+                }
+    get:
+      summary: Reads a list of customers.
+      description: Reads a list of customers...
+      operationId: getAllCustomers
+      parameters: 
+        - name: pageOffset
+          in: query
+          schema:
+            type: integer
+        - name: pageLimit
+          in: query
+          schema:
+            type: integer
+      tags: 
+        - customers
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Customers'
+              example:
+                [
+                  {
+                    "id": 1,
+                    "name": "John Doe",
+                    "age": 34,
+                    "email": "john.doe@acme.com"
+                  },
+                  {
+                    "id": 2,
+                    "name": "Mary Doe",
+                    "age": 28,
+                    "email": "mary.doe@acme.com"
+                  }
+                ]
+  /customers/{customerId}:
+    put:
+      summary: Replace a customer.
+      description: Replace a customer...
+      operationId: replaceCustomer
+      tags: 
+        - customers
+      requestBody:
+        description: A request body used to replace a customer.
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Customer'
+            example:
+              {
+                "name": "John Doe",
+                "age": 34,
+                "email": "john.doe@acme.com"
+              }
+        required: true
+      responses:
+        '200':
+          description: OK
+    patch:
+      summary: Modify a customer.
+      description: Modify a customer...
+      operationId: modifyCustomer
+      tags: 
+        - customers
+      requestBody:
+        description: A request body used to modify a customer.
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Customer'
+            example:
+              {
+                "name": "John Doe"
+              }
+        required: true
+      responses:
+        '200':
+          description: OK
+    get:
+      summary: Read a customer.
+      description: Read a customer...
+      operationId: getCustomerById
+      tags: 
+        - customers
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Customer'
+              example:
+                {
+                  "id": 1,
+                  "name": "John Doe",
+                  "age": 34,
+                  "email": "john.doe@acme.com"
+                }
+    delete:
+      summary: Deletes a customer.
+      description: Deletes a customer...
+      operationId: deleteCustomer
+      tags: 
+        - customers
+      responses:
+        '200':
+          description: OK
+    parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: integer
+components:
+  schemas:
+    Customer:
+      description: A schema for the Customer entity.
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        age:
+          type: integer
+        email:
+          type: string
+          format: email
+    Customers:
+      description: A schema for a list of the Customer entity.
+      type: array
+      items:
+        $ref: '#/components/schemas/Customer'
+  securitySchemes:
+    APIKeyAuth:
+      type: apiKey
+      description: The API key security scheme.
+      name: X-API-Key
+      in: header
+    BearerTokenAuth:
+      type: http
+      description: The bearer token security scheme.
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - APIKeyAuth: []
+    BearerTokenAuth: []
+tags: 
+  - name: customers
+    description: customers tag.
+externalDocs:
+  description: Complementary documentation about Customers API.
+  url: https://acme.com/docs/customers-api
