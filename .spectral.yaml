@@ -26,7 +26,6 @@ rules:
       function: truthy
       field: securitySchemes
   default-security-schemes:
-    # description: APIKeyAuth and BearerTokenAuth must be defined as security schemes.
     given: $.components.securitySchemes
     severity: error
     then:
