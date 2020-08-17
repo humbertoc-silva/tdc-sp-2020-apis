@@ -1,0 +1,33 @@
+extends: spectral:oas
+functions: [default-security-schemes]
+rules:
+  # Examples
+  request-body-example:
+    description: Every request body must have an example.
+    given: $.paths..requestBody.content.*
+    severity: error
+    then:
+      function: truthy
+      field: example
+  response-example:
+    description: Every response must have an example.
+    given: $.paths..responses.*.content.*
+    severity: error
+    then:
+      function: truthy
+      field: example
+  
+  # Security
+  security-schemes-field:
+    description: securitySchemes field must be defined.
+    given: $.components
+    severity: error
+    then:
+      function: truthy
+      field: securitySchemes
+  default-security-schemes:
+    # description: APIKeyAuth and BearerTokenAuth must be defined as security schemes.
+    given: $.components.securitySchemes
+    severity: error
+    then:
+      function: "default-security-schemes"
