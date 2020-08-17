@@ -189,17 +189,17 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Customer'
-  # securitySchemes:
-  #   APIKeyAuth:
-  #     type: apiKey
-  #     description: The API key security scheme.
-  #     name: X-API-Key
-  #     in: header
-  #   BearerTokenAuth:
-  #     type: http
-  #     description: The bearer token security scheme.
-  #     scheme: bearer
-  #     bearerFormat: JWT
+  securitySchemes:
+    APIKeyAuth:
+      type: apiKey
+      description: The API key security scheme.
+      name: X-API-Key
+      in: header
+    BearerTokenAuth:
+      type: http
+      description: The bearer token security scheme.
+      scheme: bearer
+      bearerFormat: JWT
 security:
   - APIKeyAuth: []
     BearerTokenAuth: []
