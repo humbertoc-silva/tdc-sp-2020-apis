@@ -200,9 +200,9 @@ components:
       description: The bearer token security scheme.
       scheme: bearer
       bearerFormat: JWT
-security:
-  - APIKeyAuth: []
-    BearerTokenAuth: []
+# security:
+#   - APIKeyAuth: []
+#     BearerTokenAuth: []
 tags: 
   - name: customers
     description: customers tag.
