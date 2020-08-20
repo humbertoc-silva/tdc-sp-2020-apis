@@ -1,7 +1,8 @@
 extends: spectral:oas
 functions: [default-security-schemes]
 rules:
-  # Examples
+  # Examples Rules #
+  
   request-body-example:
     description: Every request body must have an example.
     given: $.paths..requestBody.content.*
@@ -9,6 +10,7 @@ rules:
     then:
       function: truthy
       field: example
+  
   response-example:
     description: Every response must have an example.
     given: $.paths..responses.*.content.*
@@ -17,16 +19,39 @@ rules:
       function: truthy
       field: example
   
-  # Security
+  # Security Rules #
+  
   security-schemes-field:
-    description: securitySchemes field must be defined.
+    description: The securitySchemes field must be defined.
     given: $.components
     severity: error
     then:
       function: truthy
       field: securitySchemes
+  
   default-security-schemes:
     given: $.components.securitySchemes
     severity: error
     then:
       function: "default-security-schemes"
+  
+  security-field:
+    description: The security field must be defined.
+    given: $
+    severity: error
+    then:
+      function: truthy
+      field: security
+
+  security-with-default-security-schemes:
+    description: The API must be protected with the default security schemes.
+    given: $.security[*]
+    severity: error
+    then:
+      - function: truthy
+        field: APIKeyAuth
+      - function: truthy
+        field: BearerTokenAuth
+      
+  # Pagination Rules #
+      
