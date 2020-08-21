@@ -1,5 +1,5 @@
 extends: spectral:oas
-functions: [default-security-schemes]
+functions: [default-security-schemes, pagination-parameters]
 rules:
   # Examples Rules #
   
@@ -54,4 +54,8 @@ rules:
         field: BearerTokenAuth
       
   # Pagination Rules #
-      
+  collection-route-with-pagination-parameters:
+    given: $.paths
+    security: error
+    then:
+      function: pagination-parameters
