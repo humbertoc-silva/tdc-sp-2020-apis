@@ -14,7 +14,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Deploy'
+                sh 'curl --form "specification=@openapi.yaml" https://tdc2020-demo.herokuapp.com/deploy'
             }
         }
     }
