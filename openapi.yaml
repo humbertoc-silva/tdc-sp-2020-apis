@@ -27,12 +27,12 @@ paths:
           'application/json':
             schema:
               $ref: '#/components/schemas/Customer'
-            # example:
-            #   {
-            #     "name": "John Doe",
-            #     "age": 34,
-            #     "email": "john.doe@acme.com"
-            #   }
+            example:
+              {
+                "name": "John Doe",
+                "age": 34,
+                "email": "john.doe@acme.com"
+              }
         required: true
       responses:
         '201':
