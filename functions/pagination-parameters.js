@@ -6,19 +6,33 @@ module.exports = (targetVal, _opts, paths) => {
     if (/^[\/a-zA-Z0-9]+(?!(?:\/\{.+\}))$/.test(path)) {
       const pathObject = targetVal[path];
       
-      if (pathObject.get && pathObject.get.parameters) {
-        const parameters = pathObject.get.parameters;
+      if (pathObject.get) {
+        if (pathObject.get.parameters) {
+          const parameters = pathObject.get.parameters;
 
-        const pageOffsetFound = parameters.find(p => {
-          return p.name === "pageOffset" && p.in === "query" && p.schema && p.schema.type === "integer";
-        });
-        
-        const pageLimitFound = parameters.find(p => {
-          return p.name === "pageLimit" && p.in === "query" && p.schema && p.schema.type === "integer";
-        });
-
-        if (!(pageOffsetFound && pageLimitFound)) {
+          const pageOffsetFound = parameters.find(p => {
+            return p.name === "pageOffset" && p.in === "query" && p.schema && p.schema.type === "integer";
+          });
           
+          const pageLimitFound = parameters.find(p => {
+            return p.name === "pageLimit" && p.in === "query" && p.schema && p.schema.type === "integer";
+          });
+
+          if (!(pageOffsetFound && pageLimitFound)) {
+            results.push(
+              {
+                message: `The collection route "${path}" must have the pageOffset and pageLimit pagination parameters.`,
+                path: [...rootPath, path]
+              }  
+            );
+          }
+        } else {
+          results.push(
+            {
+              message: `The collection route "${path}" must define the parameters field`,
+              path: [...rootPath, path]
+            }  
+          );
         }
       }
     }
