@@ -56,6 +56,6 @@ rules:
   # Pagination Rules #
   collection-route-with-pagination-parameters:
     given: $.paths
-    security: error
+    severity: error
     then:
       function: pagination-parameters
