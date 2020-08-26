@@ -14,6 +14,54 @@ info:
 servers:
   - url: https://api.acme.com/v1
 paths:
+  /customers:
+    post:
+      summary: Creates a new customer.
+      description: Creates a new customer...
+      operationId: createCustomer
+      tags: 
+        - customers
+      requestBody:
+        description: A request body used to creat a new customer.
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            'Location':
+              schema:
+                type: string
+              example: https://api.acme.com/v1/customers/1
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Customer'
+    get:
+      summary: Reads a list of customers.
+      description: Reads a list of customers...
+      operationId: getAllCustomers
+      parameters: 
+        - name: pageOffset
+          in: query
+          schema:
+            type: integer
+        - name: pageLimit
+          in: query
+          schema:
+            type: integer
+      tags: 
+        - customers
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Customers'
   /customers/{customerId}:
     put:
       summary: Replace a customer.
